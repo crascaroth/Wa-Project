@@ -14,5 +14,16 @@ export class LabDatabase extends BaseDatabase {
             }
     } 
 
+    public async getAllLabs(): Promise<object[]> {
+        try {
+            return await this.getConnection().raw(`
+            SELECT * FROM ${this.tableNames.LabTable};
+            `)
+            
+        } catch (error) {
+            throw new Error(error.sqlMessage || error.message)
+        }
+    }
+
 
 }

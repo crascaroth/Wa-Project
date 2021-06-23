@@ -23,7 +23,24 @@ export class LabController {
             await labBusiness.labSignup(inputRaw)
 
             res.status(201).send("Laboratory Created Sucessfully.")
+            
+        } catch (error) {
+            res.status(400).send({error: error.message})
+        }
+        await BaseDatabase.destroyConnection();
+    }
 
+    async getAllLabs(req: Request, res: Response) {
+        try {
+
+            const labBusiness = new LabBusiness(
+                new LabDatabase,
+                new IdGenerator,             
+            );
+
+            const laboratories = await labBusiness.getAllLabs()
+
+            res.status(200).send({Laboratories: laboratories})
             
         } catch (error) {
             res.status(400).send({error: error.message})

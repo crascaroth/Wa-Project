@@ -23,5 +23,9 @@ export class LabBusiness {
         await this.labDatabase.labSignup(inputComplete)
     }
 
+    public async getAllLabs(): Promise<object[]>{
+        return await this.labDatabase.getAllLabs()
+    }
+
     
 }
