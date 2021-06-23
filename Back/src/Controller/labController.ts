@@ -1,12 +1,32 @@
 import{Request, Response} from "express";
+import { LabBusiness } from "../Business/labBusiness";
 import { BaseDatabase } from "../Data/BaseDatabase";
+import { LabDatabase } from "../Data/labData";
+import { InputRaw } from "../Entities/Lab";
+import { IdGenerator } from "../Services/IdGenerator";
+
 
 export class LabController {
     async signupLab(req: Request, res: Response){
         try {
+            const inputRaw: InputRaw = {
+                nome: req.body.nome,
+                endereco: req.body.nome
+            }
+
+
+            const labBusiness = new LabBusiness(
+                new LabDatabase,
+                new IdGenerator,             
+            );
+
+            await labBusiness.labSignup(inputRaw)
+
+            res.status(201).send("Laboratory Created Sucessfully.")
+
             
         } catch (error) {
-            
+            res.status(400).send({error: error.message})
         }
         await BaseDatabase.destroyConnection();
     }
