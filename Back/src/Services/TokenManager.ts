@@ -1,4 +1,4 @@
-import { AuthenticationData } from "../Entities/User"
+import { AuthenticationData } from "../Entities/Lab"
 import * as jwt from "jsonwebtoken";
 
 export class TokenManager {
