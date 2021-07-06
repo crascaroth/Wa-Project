@@ -5,7 +5,7 @@ This is project directed to a Job Vacancy
 first of all import or clone this project with
 
 ~~~
-git clone [clone's link]
+git clone https://github.com/crascaroth/Wa-Project.git
 ~~~
 
 next enter the Folder directory
