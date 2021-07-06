@@ -9,7 +9,7 @@ export class ExamBusiness {
   ) {}
 
   public async signupExam(inputRaw: InputRawExam): Promise<void> {
-    if (![inputRaw.nome, inputRaw.endereco]) {
+    if (![inputRaw.nome, inputRaw.tipo]) {
       throw new Error("Please insert a Valid Name or Address");
     }
 
@@ -18,7 +18,7 @@ export class ExamBusiness {
     const inputComplete: InputCompleteExam = {
       id,
       nome: inputRaw.nome,
-      endereco: inputRaw.endereco,
+      tipo: inputRaw.tipo,
     };
 
     await this.examDatabase.signupExam(inputComplete);
@@ -52,5 +52,13 @@ export class ExamBusiness {
     await this.examDatabase.updateExam(input);
 
     
+  }
+
+  public async deleteExam(id: string):Promise<void>{
+    if(!id){
+      throw new Error("Please insert a valid id")
+    }
+
+    await this.examDatabase.deleteExam(id);
   }
 }

@@ -71,4 +71,14 @@ export class LabDatabase extends BaseDatabase {
       throw new Error(error.sqlMessage || error.message);
     }
   }
+
+  public async getLabById(id: string): Promise<object>{
+    try {
+      return await this.getConnection().raw(`
+      SELECT * FROM ${this.tableNames.LabTable} WHERE id='${id}';
+      `)
+    } catch (error) {
+      throw new Error(error.sqlMessage || error.message);
+    }
+  }
 }
