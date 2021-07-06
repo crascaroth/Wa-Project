@@ -5,6 +5,7 @@ import dotenv from "dotenv"
 import cors from "cors"
 
 import server from "./Services/Server";
+import { relationRouter } from "./Routes/relationRouter";
 
 dotenv.config()
 const app: Express = express()
@@ -17,3 +18,4 @@ app.listen(3003, () => {
 
 app.use("/laboratory", labRouter);
 app.use("/exam", examRouter);
+app.use("/relation", relationRouter);

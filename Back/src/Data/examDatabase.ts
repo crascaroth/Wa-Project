@@ -5,8 +5,8 @@ export class ExamDatabase extends BaseDatabase {
   public async signupExam(input: InputCompleteExam): Promise<void> {
     try {
       await this.getConnection().raw(`
-            INSERT INTO ${this.tableNames.ExamTable} (id, nome, endereco, status)
-                VALUES ("${input.id}", "${input.nome}", "${input.endereco}", true);
+            INSERT INTO ${this.tableNames.ExamTable} (id, nome, tipo, status)
+                VALUES ("${input.id}", "${input.nome}", "${input.tipo}", true);
             `);
     } catch (error) {
       throw new Error(error.sqlMessage || error.message);
@@ -35,15 +35,15 @@ export class ExamDatabase extends BaseDatabase {
   }
 
   public async updateExam(input: inputRawEditExam): Promise<void>{
-    if(input.nome && input.endereco){
+    if(input.nome && input.tipo){
       await this.getConnection().raw(`
       UPDATE ${this.tableNames.ExamTable}
-      SET nome='${input.nome}', endereco='${input.endereco}'
+      SET nome='${input.nome}', tipo='${input.tipo}'
       WHERE id='${input.id}';
       `)
     }
 
-    else if(input.nome && !input.endereco){
+    else if(input.nome && !input.tipo){
       await this.getConnection().raw(`
       UPDATE ${this.tableNames.ExamTable}
       SET nome='${input.nome}'
@@ -51,15 +51,34 @@ export class ExamDatabase extends BaseDatabase {
       `)
     }
 
-    else if(!input.nome && input.endereco){
+    else if(!input.nome && input.tipo){
       await this.getConnection().raw(`
       UPDATE ${this.tableNames.ExamTable}
-      SET endereco='${input.endereco}'
+      SET tipo='${input.tipo}'
       WHERE id='${input.id}';
       `)
     }
     else{
       throw new Error("Nothing to edit");
+    }
+  }
+  public async deleteExam(id: string): Promise<void> {
+    try {
+      await this.getConnection().raw(`
+      DELETE FROM ${this.tableNames.ExamTable} WHERE id='${id}';
+      `);
+    } catch (error) {
+      throw new Error(error.sqlMessage || error.message);
+    }
+  }
+
+  public async getExamById(id: string): Promise<object>{
+    try {
+      return await this.getConnection().raw(`
+      SELECT * FROM ${this.tableNames.ExamTable} WHERE id='${id}';
+      `)
+    } catch (error) {
+      throw new Error(error.sqlMessage || error.message);
     }
   }
 

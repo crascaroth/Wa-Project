@@ -49,8 +49,14 @@ export class LabBusiness {
       throw new Error("Please insert a valid id");
     }
 
-    await this.labDatabase.updateLaboratory(input);
+    await this.labDatabase.updateLaboratory(input);    
+  }
 
-    
+  public async deleteLaboratory(id: string):Promise<void>{
+    if(!id){
+      throw new Error("Please insert a valid id")
+    }
+
+    await this.labDatabase.deleteLaboratory(id);
   }
 }

@@ -68,4 +68,21 @@ export class LabController {
     }
     await BaseDatabase.destroyConnection();
   }
+
+  async deleteLaboratory(req: Request, res: Response){
+    try {
+      const inputId: string = req.params.id
+      
+      const labBusiness = new LabBusiness(
+        new LabDatabase(),
+        new IdGenerator()
+      )
+
+      await labBusiness.deleteLaboratory(inputId);
+      res.status(200).send(`id: ${req.params.id} Removed Sucessfully`)
+    } catch (error) {
+      res.status(400).send({ error: error.message });
+    }
+    await BaseDatabase.destroyConnection();
+  }
 }

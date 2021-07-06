@@ -12,4 +12,5 @@ exports.labRouter.post("/signup", labController.signupLab);
 exports.labRouter.get("/get/all", labController.getAllLabs);
 exports.labRouter.get("/get/active", labController.getActiveLabs);
 exports.labRouter.put("/edit/:id", labController.updateLaboratory);
+exports.labRouter.put("/delete/:id", labController.deleteLaboratory);
 //# sourceMappingURL=labRouter.js.map

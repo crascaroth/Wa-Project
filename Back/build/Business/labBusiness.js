@@ -59,6 +59,14 @@ class LabBusiness {
             yield this.labDatabase.updateLaboratory(input);
         });
     }
+    deleteLaboratory(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (!id) {
+                throw new Error("Please insert a valid id");
+            }
+            yield this.labDatabase.deleteLaboratory(id);
+        });
+    }
 }
 exports.LabBusiness = LabBusiness;
 //# sourceMappingURL=labBusiness.js.map

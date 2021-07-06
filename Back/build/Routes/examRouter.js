@@ -12,4 +12,5 @@ exports.examRouter.post("/signup", examController.signupExam);
 exports.examRouter.get("/get/all", examController.getAllExams);
 exports.examRouter.get("/get/active", examController.getActiveExams);
 exports.examRouter.put("/edit/:id", examController.updateExam);
+exports.examRouter.put("/remove/:id");
 //# sourceMappingURL=examRouter.js.map

@@ -1,17 +1,17 @@
 export type inputRawEditExam = {
 id: string,
 nome: string | undefined,
-endereco: string | undefined,
+tipo: string | undefined,
 }
 
 export type InputRawExam = {
     nome: string,
-    endereco: string
+    tipo: string
 } 
 
 export type InputCompleteExam = {
     id: string,
     nome: string,
-    endereco: string
+    tipo: string
     
 }

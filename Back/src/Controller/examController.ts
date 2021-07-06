@@ -10,7 +10,7 @@ export class ExamController {
     try {
       const inputRaw: InputRawExam = {
         nome: req.body.nome,
-        endereco: req.body.endereco,
+        tipo: req.body.tipo,
       };
 
       const examBusiness = new ExamBusiness(
@@ -60,7 +60,7 @@ export class ExamController {
       const inputRaw: inputRawEditExam = {
         id: req.params.id,
         nome: req.body.nome, 
-        endereco: req.body.endereco
+        tipo: req.body.tipo
       }
       const examBusiness = new ExamBusiness(
         new ExamDatabase(),
@@ -69,6 +69,23 @@ export class ExamController {
   
       await examBusiness.updateExam(inputRaw);
         res.status(200).send(`id: ${req.params.id} Editted Sucessfully`)
+    } catch (error) {
+      res.status(400).send({ error: error.message });
+    }
+    await BaseDatabase.destroyConnection();
+  }
+
+  async deleteExam(req: Request, res: Response){
+    try {
+      const inputId: string = req.params.id
+      
+      const labBusiness = new ExamBusiness(
+        new ExamDatabase(),
+        new IdGenerator()
+      )
+
+      await labBusiness.deleteExam(inputId);
+      res.status(200).send(`id: ${req.params.id} Removed Sucessfully`)
     } catch (error) {
       res.status(400).send({ error: error.message });
     }

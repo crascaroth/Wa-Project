@@ -26,6 +26,9 @@ Content-Type: application/json
 
 }
 
+### Remove Laboratory
+PUT http://localhost:3003/laboratory/delete/5c0d309d-8217-45f0-8f31-8be73519d687
+
 ### Signup Exam
 POST http://localhost:3003/exam/signup
 Content-Type: application/json
