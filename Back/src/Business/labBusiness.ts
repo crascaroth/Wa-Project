@@ -1,5 +1,5 @@
 import { IdGenerator } from "../Services/IdGenerator";
-import { LabDatabase } from "../Data/labData";
+import { LabDatabase } from "../Data/labDatabase";
 import { InputComplete, InputRaw } from "../Entities/Lab";
 
 export class LabBusiness {
@@ -23,7 +23,14 @@ export class LabBusiness {
     await this.labDatabase.labSignup(inputComplete);
   }
 
-  public async getAllLabs(): Promise<object[]> {
-    return await this.labDatabase.getAllLabs();
+  public async getAllLabs(): Promise<object | null> {
+    const result = await this.labDatabase.getAllLabs();
+    
+    if(!result[0]){
+      return null
+    }
+    else {
+      return result[0];
+    }
   }
 }

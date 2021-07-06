@@ -13,7 +13,7 @@ export class ExamDatabase extends BaseDatabase {
     }
   }
   
-  public async getAllExams(): Promise<object[] | void>{
+  public async getAllExams(): Promise<object[]>{
       try {
           return await this.getConnection().raw(`
           SELECT * FROM ${this.tableNames.ExamTable};

@@ -17,7 +17,8 @@ const knex_1 = __importDefault(require("knex"));
 class BaseDatabase {
     constructor() {
         this.tableNames = {
-            LabTable: "laboratory",
+            LabTable: "wa_laboratory",
+            ExamTable: "wa_exam",
         };
     }
     getConnection() {

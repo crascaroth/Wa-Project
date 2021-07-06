@@ -8,5 +8,6 @@ const express_1 = __importDefault(require("express"));
 const examController_1 = require("../Controller/examController");
 exports.examRouter = express_1.default.Router();
 const examController = new examController_1.ExamController();
-exports.examRouter.post("/signup/exam", examController.signupExam);
+exports.examRouter.post("/signup", examController.signupExam);
+exports.examRouter.get("/get/all", examController.getAllExams);
 //# sourceMappingURL=examRouter.js.map

@@ -10,7 +10,7 @@ export class ExamController {
     try {
       const inputRaw: InputRaw = {
         nome: req.body.nome,
-        endereco: req.body.nome,
+        endereco: req.body.endereco,
       };
 
       const examBusiness = new ExamBusiness(

@@ -6,7 +6,7 @@ export class LabDatabase extends BaseDatabase {
     try {
       await this.getConnection().raw(`
                 INSERT INTO ${this.tableNames.LabTable} (id, nome, endereco, status)
-                VALUES ("${input.id}", "${input.nome}", "${input.endereco}", true);
+                VALUES ("${input.id}", "${input.nome}", "${input.endereco}", 1);
                 `);
     } catch (error) {
       throw new Error(error.sqlMessage || error.message);

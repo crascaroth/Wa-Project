@@ -25,7 +25,14 @@ export class ExamBusiness {
     
 }
 
-    public async getAllExams(): Promise<object[] | void> {
-        return await this.examDatabase.getAllExams();
+    public async getAllExams(): Promise<object | null> {
+      const result = await this.examDatabase.getAllExams();
+    
+      if(!result[0]){
+        return null
+      }
+      else {
+        return result[0];
+      }
     }
 }

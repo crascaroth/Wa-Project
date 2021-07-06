@@ -24,14 +24,20 @@ class LabBusiness {
             const inputComplete = {
                 id,
                 nome: inputRaw.nome,
-                endereco: inputRaw.endereco
+                endereco: inputRaw.endereco,
             };
             yield this.labDatabase.labSignup(inputComplete);
         });
     }
     getAllLabs() {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.labDatabase.getAllLabs();
+            const result = yield this.labDatabase.getAllLabs();
+            if (!result[0]) {
+                return null;
+            }
+            else {
+                return result[0];
+            }
         });
     }
 }

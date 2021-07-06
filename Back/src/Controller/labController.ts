@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { LabBusiness } from "../Business/labBusiness";
 import { BaseDatabase } from "../Data/BaseDatabase";
-import { LabDatabase } from "../Data/labData";
+import { LabDatabase } from "../Data/labDatabase";
 import { InputRaw } from "../Entities/Lab";
 import { IdGenerator } from "../Services/IdGenerator";
 
@@ -10,7 +10,7 @@ export class LabController {
     try {
       const inputRaw: InputRaw = {
         nome: req.body.nome,
-        endereco: req.body.nome,
+        endereco: req.body.endereco,
       };
 
       const labBusiness = new LabBusiness(new LabDatabase(), new IdGenerator());

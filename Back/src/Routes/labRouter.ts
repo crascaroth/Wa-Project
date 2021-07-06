@@ -5,5 +5,5 @@ export const labRouter = express.Router();
 
 const labController = new LabController();
 
-labRouter.post("/signup/lab", labController.signupLab)
-labRouter.get("/get/all/lab", labController.getAllLabs)
+labRouter.post("/signup", labController.signupLab)
+labRouter.get("/get/all", labController.getAllLabs)

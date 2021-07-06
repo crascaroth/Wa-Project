@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.LabController = void 0;
 const labBusiness_1 = require("../Business/labBusiness");
 const BaseDatabase_1 = require("../Data/BaseDatabase");
-const labData_1 = require("../Data/labData");
+const labDatabase_1 = require("../Data/labDatabase");
 const IdGenerator_1 = require("../Services/IdGenerator");
 class LabController {
     signupLab(req, res) {
@@ -20,9 +20,9 @@ class LabController {
             try {
                 const inputRaw = {
                     nome: req.body.nome,
-                    endereco: req.body.nome
+                    endereco: req.body.endereco,
                 };
-                const labBusiness = new labBusiness_1.LabBusiness(new labData_1.LabDatabase, new IdGenerator_1.IdGenerator);
+                const labBusiness = new labBusiness_1.LabBusiness(new labDatabase_1.LabDatabase(), new IdGenerator_1.IdGenerator());
                 yield labBusiness.labSignup(inputRaw);
                 res.status(201).send("Laboratory Created Sucessfully.");
             }
@@ -35,7 +35,7 @@ class LabController {
     getAllLabs(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const labBusiness = new labBusiness_1.LabBusiness(new labData_1.LabDatabase, new IdGenerator_1.IdGenerator);
+                const labBusiness = new labBusiness_1.LabBusiness(new labDatabase_1.LabDatabase(), new IdGenerator_1.IdGenerator());
                 const laboratories = yield labBusiness.getAllLabs();
                 res.status(200).send({ Laboratories: laboratories });
             }
