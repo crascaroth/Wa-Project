@@ -50,6 +50,34 @@ class LabDatabase extends BaseDatabase_1.BaseDatabase {
             }
         });
     }
+    updateLaboratory(input) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (input.nome && input.endereco) {
+                yield this.getConnection().raw(`
+      UPDATE ${this.tableNames.LabTable}
+      SET nome='${input.nome}', endereco='${input.endereco}'
+      WHERE id='${input.id}';
+      `);
+            }
+            else if (input.nome && !input.endereco) {
+                yield this.getConnection().raw(`
+      UPDATE ${this.tableNames.LabTable}
+      SET nome='${input.nome}'
+      WHERE id='${input.id}';
+      `);
+            }
+            else if (!input.nome && input.endereco) {
+                yield this.getConnection().raw(`
+      UPDATE ${this.tableNames.LabTable}
+      SET endereco='${input.endereco}'
+      WHERE id='${input.id}';
+      `);
+            }
+            else {
+                throw new Error("Nothing to edit");
+            }
+        });
+    }
 }
 exports.LabDatabase = LabDatabase;
 //# sourceMappingURL=labDatabase.js.map

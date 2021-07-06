@@ -1,6 +1,6 @@
 import { IdGenerator } from "../Services/IdGenerator";
 import { LabDatabase } from "../Data/labDatabase";
-import { InputCompleteLab, InputRawLab } from "../Entities/Lab";
+import { InputCompleteLab, inputRawEditLab, InputRawLab } from "../Entities/Lab";
 
 export class LabBusiness {
   constructor(
@@ -42,5 +42,15 @@ export class LabBusiness {
     else {
       return result[0];
     }
+  }
+
+  public async updateLaboratory(input: inputRawEditLab): Promise<void>{
+    if(!input.id){
+      throw new Error("Please insert a valid id");
+    }
+
+    await this.labDatabase.updateLaboratory(input);
+
+    
   }
 }

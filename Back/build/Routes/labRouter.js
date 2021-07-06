@@ -11,4 +11,5 @@ const labController = new labController_1.LabController();
 exports.labRouter.post("/signup", labController.signupLab);
 exports.labRouter.get("/get/all", labController.getAllLabs);
 exports.labRouter.get("/get/active", labController.getActiveLabs);
+exports.labRouter.put("/edit/:id", labController.updateLaboratory);
 //# sourceMappingURL=labRouter.js.map

@@ -17,6 +17,15 @@ Content-Type: application/json
 GET http://localhost:3003/laboratory/get/active
 Content-Type: application/json
 
+### Edit Laboratory
+PUT http://localhost:3003/laboratory/edit/841a49aa-31ca-43ca-8097-f331c50cf11e
+Content-Type: application/json
+
+{
+    "nome": "CASSEMS"
+
+}
+
 ### Signup Exam
 POST http://localhost:3003/exam/signup
 Content-Type: application/json

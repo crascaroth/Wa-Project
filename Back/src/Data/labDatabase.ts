@@ -1,4 +1,4 @@
-import { InputCompleteLab } from "../Entities/Lab";
+import { InputCompleteLab, inputRawEditLab } from "../Entities/Lab";
 import { BaseDatabase } from "./BaseDatabase";
 
 export class LabDatabase extends BaseDatabase {
@@ -34,4 +34,35 @@ export class LabDatabase extends BaseDatabase {
     }
     
   }
+
+  public async updateLaboratory(input: inputRawEditLab): Promise<void>{
+    if(input.nome && input.endereco){
+      await this.getConnection().raw(`
+      UPDATE ${this.tableNames.LabTable}
+      SET nome='${input.nome}', endereco='${input.endereco}'
+      WHERE id='${input.id}';
+      `)
+    }
+
+    else if(input.nome && !input.endereco){
+      await this.getConnection().raw(`
+      UPDATE ${this.tableNames.LabTable}
+      SET nome='${input.nome}'
+      WHERE id='${input.id}';
+      `)
+    }
+
+    else if(!input.nome && input.endereco){
+      await this.getConnection().raw(`
+      UPDATE ${this.tableNames.LabTable}
+      SET endereco='${input.endereco}'
+      WHERE id='${input.id}';
+      `)
+    }
+    else{
+      throw new Error("Nothing to edit");
+    }
+  }
+
 }
+
