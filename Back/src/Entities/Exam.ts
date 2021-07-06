@@ -15,3 +15,9 @@ export type InputCompleteExam = {
     tipo: string
     
 }
+export type RequestCompleteExam ={
+    id: string,
+    nome: string,
+    tipo: string,
+    status: number
+}

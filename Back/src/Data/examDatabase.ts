@@ -1,4 +1,4 @@
-import { InputCompleteExam, inputRawEditExam } from "../Entities/Exam";
+import { InputCompleteExam, inputRawEditExam, RequestCompleteExam } from "../Entities/Exam";
 import { BaseDatabase } from "./BaseDatabase";
 
 export class ExamDatabase extends BaseDatabase {
@@ -72,11 +72,13 @@ export class ExamDatabase extends BaseDatabase {
     }
   }
 
-  public async getExamById(id: string): Promise<object>{
+  public async getExamById(id: string): Promise<RequestCompleteExam>{
     try {
-      return await this.getConnection().raw(`
+      const result = await this.getConnection().raw(`
       SELECT * FROM ${this.tableNames.ExamTable} WHERE id='${id}';
       `)
+
+      return result[0][0]
     } catch (error) {
       throw new Error(error.sqlMessage || error.message);
     }

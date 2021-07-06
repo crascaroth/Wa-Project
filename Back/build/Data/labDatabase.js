@@ -95,6 +95,19 @@ class LabDatabase extends BaseDatabase_1.BaseDatabase {
             }
         });
     }
+    getLabById(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const result = yield this.getConnection().raw(`
+      SELECT * FROM ${this.tableNames.LabTable} WHERE id='${id}';
+      `);
+                return result[0][0];
+            }
+            catch (error) {
+                throw new Error(error.sqlMessage || error.message);
+            }
+        });
+    }
 }
 exports.LabDatabase = LabDatabase;
 //# sourceMappingURL=labDatabase.js.map

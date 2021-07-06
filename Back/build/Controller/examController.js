@@ -20,7 +20,7 @@ class ExamController {
             try {
                 const inputRaw = {
                     nome: req.body.nome,
-                    endereco: req.body.endereco,
+                    tipo: req.body.tipo,
                 };
                 const examBusiness = new examBusiness_1.ExamBusiness(new examDatabase_1.ExamDatabase(), new IdGenerator_1.IdGenerator());
                 yield examBusiness.signupExam(inputRaw);
@@ -58,11 +58,25 @@ class ExamController {
                 const inputRaw = {
                     id: req.params.id,
                     nome: req.body.nome,
-                    endereco: req.body.endereco
+                    tipo: req.body.tipo
                 };
                 const examBusiness = new examBusiness_1.ExamBusiness(new examDatabase_1.ExamDatabase(), new IdGenerator_1.IdGenerator());
                 yield examBusiness.updateExam(inputRaw);
                 res.status(200).send(`id: ${req.params.id} Editted Sucessfully`);
+            }
+            catch (error) {
+                res.status(400).send({ error: error.message });
+            }
+            yield BaseDatabase_1.BaseDatabase.destroyConnection();
+        });
+    }
+    deleteExam(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const inputId = req.params.id;
+                const labBusiness = new examBusiness_1.ExamBusiness(new examDatabase_1.ExamDatabase(), new IdGenerator_1.IdGenerator());
+                yield labBusiness.deleteExam(inputId);
+                res.status(200).send(`id: ${req.params.id} Removed Sucessfully`);
             }
             catch (error) {
                 res.status(400).send({ error: error.message });
