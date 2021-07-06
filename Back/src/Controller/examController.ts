@@ -37,4 +37,20 @@ export class ExamController {
 
     res.status(200).send({ Exams: exams})
   }
+
+  async getActiveExams(req:Request, res:Response){
+    try {
+      const examBusiness = new ExamBusiness(
+        new ExamDatabase(),
+        new IdGenerator()
+      );
+  
+      const exams = await examBusiness.getActiveExams();
+  
+      res.status(200).send({ ActiveExams: exams})
+    } catch (error) {
+      res.status(400).send({ error: error.message });
+    }
+    await BaseDatabase.destroyConnection();
+  }
 }

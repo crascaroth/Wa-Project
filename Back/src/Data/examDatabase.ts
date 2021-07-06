@@ -23,5 +23,15 @@ export class ExamDatabase extends BaseDatabase {
       }
   }
 
+  public async getActiveExams(): Promise<object[]>{
+    try {
+      return await this.getConnection().raw(`
+      SELECT * FROM ${this.tableNames.LabTable}
+      WHERE status = 1;
+      `)
+    } catch (error) {
+      throw new Error(error.sqlMessage || error.message);
+    }
+  }
 
 }

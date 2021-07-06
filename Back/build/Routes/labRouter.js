@@ -10,4 +10,5 @@ exports.labRouter = express_1.default.Router();
 const labController = new labController_1.LabController();
 exports.labRouter.post("/signup", labController.signupLab);
 exports.labRouter.get("/get/all", labController.getAllLabs);
+exports.labRouter.get("/get/active", labController.getActiveLabs);
 //# sourceMappingURL=labRouter.js.map

@@ -33,4 +33,14 @@ export class LabBusiness {
       return result[0];
     }
   }
+
+  public async getActiveLabs(): Promise<object | null> {
+    const result = await this.labDatabase.getActiveLabs();
+    if(!result[0]){
+      return null
+    }
+    else {
+      return result[0];
+    }
+  }
 }
