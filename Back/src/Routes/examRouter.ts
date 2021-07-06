@@ -5,4 +5,5 @@ export const examRouter = express.Router();
 
 const examController = new ExamController();
 
-examRouter.post("/signup/exam", examController.signupExam)
+examRouter.post("/signup", examController.signupExam)
+examRouter.get("/get/all", examController.getAllExams)

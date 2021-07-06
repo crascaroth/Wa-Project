@@ -1,34 +1,30 @@
-### Signup 
+### Signup Laboratory
 # @name signup
-POST http://localhost:3003/user/signup
+POST http://localhost:3003/laboratory/signup
 Content-Type: application/json
 
 {
-    "login":"Marcelo@Vacinado.com",
-    "password":"123456"
+    "nome":"CASSEMS",
+    "endereco":"rua do Hospital, 2465"
 }
 
-### Login
-# @name Login
-POST http://localhost:3003/user/login
+
+### GetAll Laboratories
+GET http://localhost:3003/laboratory/get/all
+Content-Type: application/json
+
+
+### Signup Exam
+POST http://localhost:3003/exam/signup
 Content-Type: application/json
 
 {
-    "login":"Marcelo@Vacinado.com",
-    "password":"123456"
+    "nome":"Fezes",
+    "endereco":"rua do Hospital, 255"
 }
 
-### insert Image
-POST http://localhost:3003/image/insert/{{Login.response.body.token}}
+
+### GetAll Exams
+GET http://localhost:3003/exam/get/all
 Content-Type: application/json
-
-{
-    "subtitle": "Aleatória",
-    "URL": "stringzao"
-}
-
-@id=3b40fd34-c820-4d77-b6aa-10d48b4e62c9
-
-### getImageById
-GET http://localhost:3003/image/{{Login.response.body.token}}/{{id}}
 

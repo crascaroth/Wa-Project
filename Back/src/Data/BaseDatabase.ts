@@ -8,7 +8,8 @@ export abstract class BaseDatabase {
 
     protected tableNames = {
 
-        LabTable: "laboratory",   
+        LabTable: "wa_laboratory",  
+        ExamTable: "wa_exam",
 
     }
 

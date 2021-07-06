@@ -17,7 +17,7 @@ class LabDatabase extends BaseDatabase_1.BaseDatabase {
             try {
                 yield this.getConnection().raw(`
                 INSERT INTO ${this.tableNames.LabTable} (id, nome, endereco, status)
-                VALUES ("${input.id}", "${input.nome}", "${input.endereco}", true);
+                VALUES ("${input.id}", "${input.nome}", "${input.endereco}", 1);
                 `);
             }
             catch (error) {
@@ -39,4 +39,4 @@ class LabDatabase extends BaseDatabase_1.BaseDatabase {
     }
 }
 exports.LabDatabase = LabDatabase;
-//# sourceMappingURL=labData.js.map
+//# sourceMappingURL=labDatabase.js.map

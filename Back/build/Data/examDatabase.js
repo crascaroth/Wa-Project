@@ -9,27 +9,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LabDatabase = void 0;
+exports.ExamDatabase = void 0;
 const BaseDatabase_1 = require("./BaseDatabase");
-class LabDatabase extends BaseDatabase_1.BaseDatabase {
-    labSignup(input) {
+class ExamDatabase extends BaseDatabase_1.BaseDatabase {
+    signupExam(input) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 yield this.getConnection().raw(`
-                INSERT INTO ${this.tableNames.LabTable} (id, nome, endereco, status)
+            INSERT INTO ${this.tableNames.ExamTable} (id, nome, endereco, status)
                 VALUES ("${input.id}", "${input.nome}", "${input.endereco}", true);
-                `);
-            }
-            catch (error) {
-                throw new Error(error.sqlMessage || error.message);
-            }
-        });
-    }
-    getAllLabs() {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                return yield this.getConnection().raw(`
-            SELECT * FROM ${this.tableNames.LabTable};
             `);
             }
             catch (error) {
@@ -37,6 +25,18 @@ class LabDatabase extends BaseDatabase_1.BaseDatabase {
             }
         });
     }
+    getAllExams() {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                return yield this.getConnection().raw(`
+          SELECT * FROM ${this.tableNames.ExamTable};
+          `);
+            }
+            catch (error) {
+                throw new Error(error.sqlMessage || error.message);
+            }
+        });
+    }
 }
-exports.LabDatabase = LabDatabase;
-//# sourceMappingURL=labData.js.map
+exports.ExamDatabase = ExamDatabase;
+//# sourceMappingURL=examDatabase.js.map
