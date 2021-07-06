@@ -9,4 +9,5 @@ const relationController_1 = require("../Controller/relationController");
 exports.relationRouter = express_1.default.Router();
 const relationController = new relationController_1.RelationController();
 exports.relationRouter.put('/associate', relationController.associate);
+exports.relationRouter.put('/disassociate', relationController.disassociate);
 //# sourceMappingURL=relationRouter.js.map

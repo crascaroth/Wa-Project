@@ -34,4 +34,11 @@ export class RelationBusiness{
 
         await this.relationDatabase.associate(input)
     }
+
+    public async disassociate(input: inputRawRelation): Promise<void>{
+        if(![input.id_exam, input.id_laboratory]){
+            throw new Error("Please insert a valid laboratory or exam")
+        }
+        await this.relationDatabase.disassociate(input)
+    }
 }

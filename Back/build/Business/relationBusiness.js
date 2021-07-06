@@ -34,6 +34,14 @@ class RelationBusiness {
             yield this.relationDatabase.associate(input);
         });
     }
+    disassociate(input) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (![input.id_exam, input.id_laboratory]) {
+                throw new Error("Please insert a valid laboratory or exam");
+            }
+            yield this.relationDatabase.disassociate(input);
+        });
+    }
 }
 exports.RelationBusiness = RelationBusiness;
 //# sourceMappingURL=relationBusiness.js.map

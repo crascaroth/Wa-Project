@@ -42,7 +42,7 @@ export class RelationController {
       );
 
       await relationBusiness.disassociate(input);
-      res.status(200).send("Disassociation Created Sucessfully");
+      res.status(200).send("Disassociation executed Sucessfully");
     } catch (error) {
       res.status(400).send({ error: error.message });
     }

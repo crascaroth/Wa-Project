@@ -25,6 +25,18 @@ class RelationDatabase extends BaseDatabase_1.BaseDatabase {
             }
         });
     }
+    disassociate(input) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                yield this.getConnection().raw(`
+            DELETE FROM ${this.tableNames.RelationTable} WHERE fk_laboratory='${input.id_laboratory}' AND fk_exam='${input.id_exam}';
+            `);
+            }
+            catch (error) {
+                throw new Error(error.sqlMessage || error.message);
+            }
+        });
+    }
 }
 exports.RelationDatabase = RelationDatabase;
 //# sourceMappingURL=relationDatabase.js.map

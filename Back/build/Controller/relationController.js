@@ -23,9 +23,26 @@ class RelationController {
                     id_laboratory: req.body.id_laboratory,
                     id_exam: req.body.id_exam,
                 };
-                const relationBusiness = new relationBusiness_1.RelationBusiness(new examDatabase_1.ExamDatabase, new labDatabase_1.LabDatabase, new relationDatabase_1.RelationDatabase);
+                const relationBusiness = new relationBusiness_1.RelationBusiness(new examDatabase_1.ExamDatabase(), new labDatabase_1.LabDatabase(), new relationDatabase_1.RelationDatabase());
                 yield relationBusiness.associate(input);
                 res.status(201).send("Association Created Sucessfully");
+            }
+            catch (error) {
+                res.status(400).send({ error: error.message });
+            }
+            yield BaseDatabase_1.BaseDatabase.destroyConnection();
+        });
+    }
+    disassociate(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const input = {
+                    id_laboratory: req.body.id_laboratory,
+                    id_exam: req.body.id_exam,
+                };
+                const relationBusiness = new relationBusiness_1.RelationBusiness(new examDatabase_1.ExamDatabase(), new labDatabase_1.LabDatabase(), new relationDatabase_1.RelationDatabase());
+                yield relationBusiness.disassociate(input);
+                res.status(200).send("Disassociation executed Sucessfully");
             }
             catch (error) {
                 res.status(400).send({ error: error.message });
