@@ -39,6 +39,37 @@ class ExamController {
             res.status(200).send({ Exams: exams });
         });
     }
+    getActiveExams(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const examBusiness = new examBusiness_1.ExamBusiness(new examDatabase_1.ExamDatabase(), new IdGenerator_1.IdGenerator());
+                const exams = yield examBusiness.getActiveExams();
+                res.status(200).send({ ActiveExams: exams });
+            }
+            catch (error) {
+                res.status(400).send({ error: error.message });
+            }
+            yield BaseDatabase_1.BaseDatabase.destroyConnection();
+        });
+    }
+    updateExam(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const inputRaw = {
+                    id: req.params.id,
+                    nome: req.body.nome,
+                    endereco: req.body.endereco
+                };
+                const examBusiness = new examBusiness_1.ExamBusiness(new examDatabase_1.ExamDatabase(), new IdGenerator_1.IdGenerator());
+                yield examBusiness.updateExam(inputRaw);
+                res.status(200).send(`id: ${req.params.id} Editted Sucessfully`);
+            }
+            catch (error) {
+                res.status(400).send({ error: error.message });
+            }
+            yield BaseDatabase_1.BaseDatabase.destroyConnection();
+        });
+    }
 }
 exports.ExamController = ExamController;
 //# sourceMappingURL=examController.js.map

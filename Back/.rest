@@ -31,3 +31,11 @@ Content-Type: application/json
 GET http://localhost:3003/exam/get/all
 Content-Type: application/json
 
+### Edit Exam
+PUT http://localhost:3003/exam/edit/2dea6e61-0788-49a4-bc03-3f503fb4e586
+Content-Type: application/json
+
+{
+    
+    "endereco": "rua do Hospital, 12"
+}

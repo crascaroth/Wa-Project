@@ -10,4 +10,6 @@ exports.examRouter = express_1.default.Router();
 const examController = new examController_1.ExamController();
 exports.examRouter.post("/signup", examController.signupExam);
 exports.examRouter.get("/get/all", examController.getAllExams);
+exports.examRouter.get("/get/active", examController.getActiveExams);
+exports.examRouter.put("/edit/:id", examController.updateExam);
 //# sourceMappingURL=examRouter.js.map

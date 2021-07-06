@@ -1,13 +1,15 @@
-export type AuthenticationData = {
-    
-}
+export type inputRawEditLab = {
+    id: string,
+    nome: string | undefined,
+    endereco: string | undefined
+    }
 
-export type InputRaw = {
+export type InputRawLab = {
     nome: string,
     endereco: string
 } 
 
-export type InputComplete = {
+export type InputCompleteLab = {
     id: string,
     nome: string,
     endereco: string

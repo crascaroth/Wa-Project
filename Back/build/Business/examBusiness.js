@@ -24,7 +24,7 @@ class ExamBusiness {
             const inputComplete = {
                 id,
                 nome: inputRaw.nome,
-                endereco: inputRaw.endereco
+                endereco: inputRaw.endereco,
             };
             yield this.examDatabase.signupExam(inputComplete);
         });
@@ -38,6 +38,25 @@ class ExamBusiness {
             else {
                 return result[0];
             }
+        });
+    }
+    getActiveExams() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const result = yield this.examDatabase.getActiveExams();
+            if (!result[0]) {
+                return null;
+            }
+            else {
+                return result[0];
+            }
+        });
+    }
+    updateExam(input) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (!input.id) {
+                throw new Error("Please insert a valid id");
+            }
+            yield this.examDatabase.updateExam(input);
         });
     }
 }

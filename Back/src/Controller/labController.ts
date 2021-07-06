@@ -2,13 +2,13 @@ import { Request, Response } from "express";
 import { LabBusiness } from "../Business/labBusiness";
 import { BaseDatabase } from "../Data/BaseDatabase";
 import { LabDatabase } from "../Data/labDatabase";
-import { InputRaw } from "../Entities/Lab";
+import { InputRawLab } from "../Entities/Lab";
 import { IdGenerator } from "../Services/IdGenerator";
 
 export class LabController {
   async signupLab(req: Request, res: Response) {
     try {
-      const inputRaw: InputRaw = {
+      const inputRaw: InputRawLab = {
         nome: req.body.nome,
         endereco: req.body.endereco,
       };

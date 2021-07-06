@@ -1,8 +1,8 @@
-import { InputComplete } from "../Entities/Lab";
+import { InputCompleteLab } from "../Entities/Lab";
 import { BaseDatabase } from "./BaseDatabase";
 
 export class LabDatabase extends BaseDatabase {
-  public async labSignup(input: InputComplete): Promise<void> {
+  public async labSignup(input: InputCompleteLab): Promise<void> {
     try {
       await this.getConnection().raw(`
                 INSERT INTO ${this.tableNames.LabTable} (id, nome, endereco, status)
