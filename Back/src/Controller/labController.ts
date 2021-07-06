@@ -26,7 +26,10 @@ export class LabController {
 
   async getAllLabs(req: Request, res: Response) {
     try {
-      const labBusiness = new LabBusiness(new LabDatabase(), new IdGenerator());
+      const labBusiness = new LabBusiness(
+          new LabDatabase(),
+          new IdGenerator()
+          );
 
       const laboratories = await labBusiness.getAllLabs();
 

@@ -26,4 +26,15 @@ export class ExamController {
     }
     await BaseDatabase.destroyConnection();
   }
+
+  async getAllExams(req: Request, res: Response) {
+    const examBusiness = new ExamBusiness(
+      new ExamDatabase(),
+      new IdGenerator()
+    );
+
+    const exams = await examBusiness.getAllExams();
+
+    res.status(200).send({ Exams: exams})
+  }
 }

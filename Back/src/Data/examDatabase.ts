@@ -12,4 +12,16 @@ export class ExamDatabase extends BaseDatabase {
       throw new Error(error.sqlMessage || error.message);
     }
   }
+  
+  public async getAllExams(): Promise<object[] | void>{
+      try {
+          return await this.getConnection().raw(`
+          SELECT * FROM ${this.tableNames.ExamTable};
+          `)
+      } catch (error) {
+        throw new Error(error.sqlMessage || error.message);
+      }
+  }
+
+
 }

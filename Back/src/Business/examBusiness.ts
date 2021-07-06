@@ -20,8 +20,12 @@ export class ExamBusiness {
         nome: inputRaw.nome, 
         endereco: inputRaw.endereco
     }
-    
+
     await this.examDatabase.signupExam(inputComplete)
     
 }
+
+    public async getAllExams(): Promise<object[] | void> {
+        return await this.examDatabase.getAllExams();
+    }
 }
