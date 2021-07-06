@@ -22,4 +22,16 @@ export class LabDatabase extends BaseDatabase {
       throw new Error(error.sqlMessage || error.message);
     }
   }
+
+  public async getActiveLabs(): Promise<object[]>{
+    try {
+      return await this.getConnection().raw(`
+      SELECT * FROM ${this.tableNames.LabTable}
+      WHERE status = 1;
+      `)
+    } catch (error) {
+      throw new Error(error.sqlMessage || error.message);
+    }
+    
+  }
 }

@@ -13,6 +13,9 @@ Content-Type: application/json
 GET http://localhost:3003/laboratory/get/all
 Content-Type: application/json
 
+### Get Active Laboratories
+GET http://localhost:3003/laboratory/get/active
+Content-Type: application/json
 
 ### Signup Exam
 POST http://localhost:3003/exam/signup

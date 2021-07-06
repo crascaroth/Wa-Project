@@ -37,6 +37,19 @@ class LabDatabase extends BaseDatabase_1.BaseDatabase {
             }
         });
     }
+    getActiveLabs() {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                return yield this.getConnection().raw(`
+      SELECT * FROM ${this.tableNames.LabTable}
+      WHERE status = 1;
+      `);
+            }
+            catch (error) {
+                throw new Error(error.sqlMessage || error.message);
+            }
+        });
+    }
 }
 exports.LabDatabase = LabDatabase;
 //# sourceMappingURL=labDatabase.js.map

@@ -45,6 +45,19 @@ class LabController {
             yield BaseDatabase_1.BaseDatabase.destroyConnection();
         });
     }
+    getActiveLabs(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const labBusiness = new labBusiness_1.LabBusiness(new labDatabase_1.LabDatabase(), new IdGenerator_1.IdGenerator());
+                const laboratories = yield labBusiness.getActiveLabs();
+                res.status(200).send({ ActiveLaboratories: laboratories });
+            }
+            catch (error) {
+                res.status(400).send({ error: error.message });
+            }
+            yield BaseDatabase_1.BaseDatabase.destroyConnection();
+        });
+    }
 }
 exports.LabController = LabController;
 //# sourceMappingURL=labController.js.map

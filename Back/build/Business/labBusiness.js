@@ -40,6 +40,17 @@ class LabBusiness {
             }
         });
     }
+    getActiveLabs() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const result = yield this.labDatabase.getActiveLabs();
+            if (!result[0]) {
+                return null;
+            }
+            else {
+                return result[0];
+            }
+        });
+    }
 }
 exports.LabBusiness = LabBusiness;
 //# sourceMappingURL=labBusiness.js.map

@@ -35,4 +35,17 @@ export class ExamBusiness {
         return result[0];
       }
     }
+
+    public async getActiveExams(){
+      const result = await this.examDatabase.getActiveExams();
+    
+      if(!result[0]){
+        return null
+      }
+      else {
+        return result[0];
+      }
+    }
+
+    
 }

@@ -26,14 +26,22 @@ export class LabController {
 
   async getAllLabs(req: Request, res: Response) {
     try {
-      const labBusiness = new LabBusiness(
-          new LabDatabase(),
-          new IdGenerator()
-          );
+      const labBusiness = new LabBusiness(new LabDatabase(), new IdGenerator());
 
       const laboratories = await labBusiness.getAllLabs();
 
       res.status(200).send({ Laboratories: laboratories });
+    } catch (error) {
+      res.status(400).send({ error: error.message });
+    }
+    await BaseDatabase.destroyConnection();
+  }
+
+  async getActiveLabs(req: Request, res: Response) {
+    try {
+      const labBusiness = new LabBusiness(new LabDatabase(), new IdGenerator());
+      const laboratories = await labBusiness.getActiveLabs();
+      res.status(200).send({ ActiveLaboratories: laboratories });
     } catch (error) {
       res.status(400).send({ error: error.message });
     }
