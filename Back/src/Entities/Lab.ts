@@ -15,3 +15,10 @@ export type InputCompleteLab = {
     endereco: string
     
 }
+
+export type RequestCompleteLab ={
+    id: string,
+    nome: string,
+    endereco: string,
+    status: number
+}

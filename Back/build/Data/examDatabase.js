@@ -16,8 +16,8 @@ class ExamDatabase extends BaseDatabase_1.BaseDatabase {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 yield this.getConnection().raw(`
-            INSERT INTO ${this.tableNames.ExamTable} (id, nome, endereco, status)
-                VALUES ("${input.id}", "${input.nome}", "${input.endereco}", true);
+            INSERT INTO ${this.tableNames.ExamTable} (id, nome, tipo, status)
+                VALUES ("${input.id}", "${input.nome}", "${input.tipo}", true);
             `);
             }
             catch (error) {
@@ -52,29 +52,54 @@ class ExamDatabase extends BaseDatabase_1.BaseDatabase {
     }
     updateExam(input) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (input.nome && input.endereco) {
+            if (input.nome && input.tipo) {
                 yield this.getConnection().raw(`
       UPDATE ${this.tableNames.ExamTable}
-      SET nome='${input.nome}', endereco='${input.endereco}'
+      SET nome='${input.nome}', tipo='${input.tipo}'
       WHERE id='${input.id}';
       `);
             }
-            else if (input.nome && !input.endereco) {
+            else if (input.nome && !input.tipo) {
                 yield this.getConnection().raw(`
       UPDATE ${this.tableNames.ExamTable}
       SET nome='${input.nome}'
       WHERE id='${input.id}';
       `);
             }
-            else if (!input.nome && input.endereco) {
+            else if (!input.nome && input.tipo) {
                 yield this.getConnection().raw(`
       UPDATE ${this.tableNames.ExamTable}
-      SET endereco='${input.endereco}'
+      SET tipo='${input.tipo}'
       WHERE id='${input.id}';
       `);
             }
             else {
                 throw new Error("Nothing to edit");
+            }
+        });
+    }
+    deleteExam(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                yield this.getConnection().raw(`
+      DELETE FROM ${this.tableNames.ExamTable} WHERE id='${id}';
+      `);
+            }
+            catch (error) {
+                throw new Error(error.sqlMessage || error.message);
+            }
+        });
+    }
+    getExamById(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const result = yield this.getConnection().raw(`
+      SELECT * FROM ${this.tableNames.ExamTable} WHERE id='${id}';
+      `);
+                return result[0][0];
+            }
+            catch (error) {
+                throw new Error(error.sqlMessage || error.message);
             }
         });
     }

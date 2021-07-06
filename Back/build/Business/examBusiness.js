@@ -17,14 +17,14 @@ class ExamBusiness {
     }
     signupExam(inputRaw) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (![inputRaw.nome, inputRaw.endereco]) {
+            if (![inputRaw.nome, inputRaw.tipo]) {
                 throw new Error("Please insert a Valid Name or Address");
             }
             const id = this.idGenerator.generateId();
             const inputComplete = {
                 id,
                 nome: inputRaw.nome,
-                endereco: inputRaw.endereco,
+                tipo: inputRaw.tipo,
             };
             yield this.examDatabase.signupExam(inputComplete);
         });
@@ -57,6 +57,14 @@ class ExamBusiness {
                 throw new Error("Please insert a valid id");
             }
             yield this.examDatabase.updateExam(input);
+        });
+    }
+    deleteExam(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (!id) {
+                throw new Error("Please insert a valid id");
+            }
+            yield this.examDatabase.deleteExam(id);
         });
     }
 }

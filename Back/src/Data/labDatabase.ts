@@ -1,4 +1,4 @@
-import { InputCompleteLab, inputRawEditLab } from "../Entities/Lab";
+import { InputCompleteLab, inputRawEditLab, RequestCompleteLab } from "../Entities/Lab";
 import { BaseDatabase } from "./BaseDatabase";
 
 export class LabDatabase extends BaseDatabase {
@@ -72,11 +72,12 @@ export class LabDatabase extends BaseDatabase {
     }
   }
 
-  public async getLabById(id: string): Promise<object>{
+  public async getLabById(id: string): Promise<RequestCompleteLab>{
     try {
-      return await this.getConnection().raw(`
+      const result = await this.getConnection().raw(`
       SELECT * FROM ${this.tableNames.LabTable} WHERE id='${id}';
       `)
+      return result[0][0]
     } catch (error) {
       throw new Error(error.sqlMessage || error.message);
     }

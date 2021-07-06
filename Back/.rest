@@ -4,7 +4,7 @@ POST http://localhost:3003/laboratory/signup
 Content-Type: application/json
 
 {
-    "nome":"CASSEMS",
+    "nome":"SUS",
     "endereco":"rua do Hospital, 2465"
 }
 
@@ -34,8 +34,8 @@ POST http://localhost:3003/exam/signup
 Content-Type: application/json
 
 {
-    "nome":"Fezes",
-    "endereco":"rua do Hospital, 255"
+    "nome":"Chapa do Peito",
+    "tipo":"Imagem"
 }
 
 
@@ -49,5 +49,24 @@ Content-Type: application/json
 
 {
     
-    "endereco": "rua do Hospital, 12"
+    "Tipo": "Imagem"
+}
+
+
+### Associate
+PUT http://localhost:3003/relation/associate
+Content-Type: application/json
+
+{
+    "id_exam": "297b58e1-1ec4-4795-bdf7-420cf3fe845a",
+    "id_laboratory": "34b60175-89a3-4060-ae60-8a09d1758c03"
+}
+
+### Disassociate
+PUT http://localhost:3003/relation/disassociate
+Content-Type: application/json
+
+{
+    "id_exam": "297b58e1-1ec4-4795-bdf7-420cf3fe845a",
+    "id_laboratory": "34b60175-89a3-4060-ae60-8a09d1758c03"
 }

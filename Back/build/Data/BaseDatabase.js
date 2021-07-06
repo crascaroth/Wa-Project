@@ -19,6 +19,7 @@ class BaseDatabase {
         this.tableNames = {
             LabTable: "wa_laboratory",
             ExamTable: "wa_exam",
+            RelationTable: "wa_relation_exam_laboratory"
         };
     }
     getConnection() {

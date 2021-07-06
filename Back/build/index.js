@@ -8,6 +8,7 @@ const examRouter_1 = require("./Routes/examRouter");
 const labRouter_1 = require("./Routes/labRouter");
 const dotenv_1 = __importDefault(require("dotenv"));
 const cors_1 = __importDefault(require("cors"));
+const relationRouter_1 = require("./Routes/relationRouter");
 dotenv_1.default.config();
 const app = express_1.default();
 app.use(express_1.default.json());
@@ -17,4 +18,5 @@ app.listen(3003, () => {
 });
 app.use("/laboratory", labRouter_1.labRouter);
 app.use("/exam", examRouter_1.examRouter);
+app.use("/relation", relationRouter_1.relationRouter);
 //# sourceMappingURL=index.js.map

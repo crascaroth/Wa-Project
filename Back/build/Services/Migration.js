@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS "wa_laboratory" (
   CREATE TABLE IF NOT EXISTS "wa_exam" (
     "id" VARCHAR(255) NOT NULL,
     "nome" VARCHAR(255) NOT NULL,
-    "endereco" VARCHAR(255) NOT NULL,
+    "tipo" VARCHAR(255) NOT NULL,
     "status" TINYINT NOT NULL,
     PRIMARY KEY ("id"));
     
