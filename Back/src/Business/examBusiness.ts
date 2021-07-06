@@ -1,6 +1,6 @@
 import { IdGenerator } from "../Services/IdGenerator";
 import { ExamDatabase } from "../Data/examDatabase";
-import { InputComplete, InputRaw } from "../Entities/Lab";
+import { InputCompleteExam, inputRawEditExam, InputRawExam } from "../Entities/Exam";
 
 export class ExamBusiness {
   constructor(
@@ -8,44 +8,49 @@ export class ExamBusiness {
     private idGenerator: IdGenerator
   ) {}
 
-  public async signupExam(inputRaw: InputRaw): Promise<void> {
+  public async signupExam(inputRaw: InputRawExam): Promise<void> {
     if (![inputRaw.nome, inputRaw.endereco]) {
       throw new Error("Please insert a Valid Name or Address");
     }
 
     const id = this.idGenerator.generateId();
 
-    const inputComplete: InputComplete = {
-        id,
-        nome: inputRaw.nome, 
-        endereco: inputRaw.endereco
+    const inputComplete: InputCompleteExam = {
+      id,
+      nome: inputRaw.nome,
+      endereco: inputRaw.endereco,
+    };
+
+    await this.examDatabase.signupExam(inputComplete);
+  }
+
+  public async getAllExams(): Promise<object | null> {
+    const result = await this.examDatabase.getAllExams();
+
+    if (!result[0]) {
+      return null;
+    } else {
+      return result[0];
+    }
+  }
+
+  public async getActiveExams() {
+    const result = await this.examDatabase.getActiveExams();
+
+    if (!result[0]) {
+      return null;
+    } else {
+      return result[0];
+    }
+  }
+  
+  public async updateExam(input: inputRawEditExam): Promise<void>{
+    if(!input.id){
+      throw new Error("Please insert a valid id");
     }
 
-    await this.examDatabase.signupExam(inputComplete)
-    
-}
-
-    public async getAllExams(): Promise<object | null> {
-      const result = await this.examDatabase.getAllExams();
-    
-      if(!result[0]){
-        return null
-      }
-      else {
-        return result[0];
-      }
-    }
-
-    public async getActiveExams(){
-      const result = await this.examDatabase.getActiveExams();
-    
-      if(!result[0]){
-        return null
-      }
-      else {
-        return result[0];
-      }
-    }
+    await this.examDatabase.updateExam(input);
 
     
+  }
 }

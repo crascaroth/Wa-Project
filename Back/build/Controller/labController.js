@@ -58,6 +58,24 @@ class LabController {
             yield BaseDatabase_1.BaseDatabase.destroyConnection();
         });
     }
+    updateLaboratory(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const inputRaw = {
+                    id: req.params.id,
+                    nome: req.body.nome,
+                    endereco: req.body.endereco
+                };
+                const labBusiness = new labBusiness_1.LabBusiness(new labDatabase_1.LabDatabase(), new IdGenerator_1.IdGenerator());
+                yield labBusiness.updateLaboratory(inputRaw);
+                res.status(200).send(`id: ${req.params.id} Editted Sucessfully`);
+            }
+            catch (error) {
+                res.status(400).send({ error: error.message });
+            }
+            yield BaseDatabase_1.BaseDatabase.destroyConnection();
+        });
+    }
 }
 exports.LabController = LabController;
 //# sourceMappingURL=labController.js.map

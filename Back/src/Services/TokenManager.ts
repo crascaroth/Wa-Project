@@ -1,10 +1,10 @@
-import { AuthenticationData } from "../Entities/Lab"
+
 import * as jwt from "jsonwebtoken";
 
 export class TokenManager {
 
      generateToken(
-        payload: AuthenticationData
+        payload: any
      ): string {
         return jwt.sign(
            payload,
@@ -17,7 +17,7 @@ export class TokenManager {
      
     getTokenData(
         token: string
-     ): AuthenticationData {
+     ) {
         const result: any = jwt.verify(
            token,
            process.env.JWT_KEY as string

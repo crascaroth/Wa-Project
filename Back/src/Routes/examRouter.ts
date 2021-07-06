@@ -8,3 +8,4 @@ const examController = new ExamController();
 examRouter.post("/signup", examController.signupExam)
 examRouter.get("/get/all", examController.getAllExams)
 examRouter.get("/get/active", examController.getActiveExams)
+examRouter.put("/edit/:id", examController.updateExam)

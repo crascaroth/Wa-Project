@@ -51,6 +51,14 @@ class LabBusiness {
             }
         });
     }
+    updateLaboratory(input) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (!input.id) {
+                throw new Error("Please insert a valid id");
+            }
+            yield this.labDatabase.updateLaboratory(input);
+        });
+    }
 }
 exports.LabBusiness = LabBusiness;
 //# sourceMappingURL=labBusiness.js.map

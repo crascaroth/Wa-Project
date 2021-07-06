@@ -37,6 +37,47 @@ class ExamDatabase extends BaseDatabase_1.BaseDatabase {
             }
         });
     }
+    getActiveExams() {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                return yield this.getConnection().raw(`
+      SELECT * FROM ${this.tableNames.LabTable}
+      WHERE status = 1;
+      `);
+            }
+            catch (error) {
+                throw new Error(error.sqlMessage || error.message);
+            }
+        });
+    }
+    updateExam(input) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (input.nome && input.endereco) {
+                yield this.getConnection().raw(`
+      UPDATE ${this.tableNames.ExamTable}
+      SET nome='${input.nome}', endereco='${input.endereco}'
+      WHERE id='${input.id}';
+      `);
+            }
+            else if (input.nome && !input.endereco) {
+                yield this.getConnection().raw(`
+      UPDATE ${this.tableNames.ExamTable}
+      SET nome='${input.nome}'
+      WHERE id='${input.id}';
+      `);
+            }
+            else if (!input.nome && input.endereco) {
+                yield this.getConnection().raw(`
+      UPDATE ${this.tableNames.ExamTable}
+      SET endereco='${input.endereco}'
+      WHERE id='${input.id}';
+      `);
+            }
+            else {
+                throw new Error("Nothing to edit");
+            }
+        });
+    }
 }
 exports.ExamDatabase = ExamDatabase;
 //# sourceMappingURL=examDatabase.js.map
