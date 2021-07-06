@@ -15,8 +15,23 @@ class LabBusiness {
         this.labDatabase = labDatabase;
         this.idGenerator = idGenerator;
     }
-    labSignup() {
+    labSignup(inputRaw) {
         return __awaiter(this, void 0, void 0, function* () {
+            if (![inputRaw.nome, inputRaw.endereco]) {
+                throw new Error("Please insert a Valid Name or Address");
+            }
+            const id = this.idGenerator.generateId();
+            const inputComplete = {
+                id,
+                nome: inputRaw.nome,
+                endereco: inputRaw.endereco
+            };
+            yield this.labDatabase.labSignup(inputComplete);
+        });
+    }
+    getAllLabs() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.labDatabase.getAllLabs();
         });
     }
 }

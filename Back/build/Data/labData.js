@@ -12,8 +12,29 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.LabDatabase = void 0;
 const BaseDatabase_1 = require("./BaseDatabase");
 class LabDatabase extends BaseDatabase_1.BaseDatabase {
-    labSignup() {
+    labSignup(input) {
         return __awaiter(this, void 0, void 0, function* () {
+            try {
+                yield this.getConnection().raw(`
+                INSERT INTO ${this.tableNames.LabTable} (id, nome, endereco)
+                VALUES ("${input.id}", "${input.nome}", "${input.endereco}");
+                `);
+            }
+            catch (error) {
+                throw new Error(error.sqlMessage || error.message);
+            }
+        });
+    }
+    getAllLabs() {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                return yield this.getConnection().raw(`
+            SELECT * FROM ${this.tableNames.LabTable};
+            `);
+            }
+            catch (error) {
+                throw new Error(error.sqlMessage || error.message);
+            }
         });
     }
 }
